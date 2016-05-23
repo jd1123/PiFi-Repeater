@@ -4,7 +4,7 @@
  INET_IFACE=wlan1
  AP_IFACE=wlan0
  VPN_IFACE=tun0
- INET_ADDRESS=192.168.77.106
+ INET_ADDRESS=$(sudo ifconfig wlan1 | grep "inet addr:" | awk -F":" '{print $2}' | awk -F" " '{print $1}')
 # Flush the tables
  $IPT -F INPUT
  $IPT -F OUTPUT

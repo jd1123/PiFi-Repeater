@@ -1,0 +1,32 @@
+# loopback
+auto lo
+iface lo inet loopback
+
+# wired connection
+iface eth0 inet dhcp
+
+# the AP interface
+# you can specify the MAC address in the commented out
+# hwaddress line to ensure the same NIC is used as the AP
+# every time the Pi is rebooted
+allow-hotplug wlan0
+iface wlan0 inet static
+	address 192.168.99.1
+	netmask 255.255.255.0
+#hwaddress ether 00:00:00:00:00:00
+
+# the bridge interface
+# this connects to your "hot" router and will serve as
+# your gateway interface
+#
+# you can specify the MAC address in the commented out
+# hwaddress line to ensure the same NIC is used for the 
+# connection every time the Pi is rebooted
+allow-hotplug wlan1
+iface wlan1 inet dhcp
+	wpa-ssid 	"YOUR WIFI ROUTER SSID"
+	wpa-psk 	"YOUR ROUTER PW" 
+#hwaddress ether 01:00:00:00:00:00
+
+#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+
